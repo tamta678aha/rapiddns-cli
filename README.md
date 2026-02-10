@@ -33,7 +33,7 @@ Requirements: Go 1.16+
 
     **Windows:**
     ```bash
-    go build -o rapiddns-cli.exe
+    go build -o rapiddns-cli
     ```
 
     **Linux:**
@@ -59,12 +59,12 @@ To use the full features of RapidDNS (especially Export and unlimited Search), y
 2.  Configure it in the CLI:
 
 ```bash
-./rapiddns-cli.exe config set-key <YOUR_API_KEY>
+rapiddns-cli config set-key <YOUR_API_KEY>
 ```
 
 Check current key:
 ```bash
-./rapiddns-cli.exe config get-key
+rapiddns-cli config get-key
 ```
 
 > **Note**: Without an API Key, search results may be limited, and export functionality will be disabled.
@@ -76,7 +76,7 @@ Check current key:
 Search for a domain, IP, or CIDR.
 
 ```bash
-./rapiddns-cli.exe search tesla.com
+rapiddns-cli search tesla.com
 ```
 
 **Options:**
@@ -92,19 +92,19 @@ Search for a domain, IP, or CIDR.
 
 ```bash
 # Save as CSV
-./rapiddns-cli.exe search tesla.com -o csv -f results.csv
+rapiddns-cli search tesla.com -o csv -f results.csv
 
 # Fetch up to 1000 records automatically
-./rapiddns-cli.exe search tesla.com --max 1000
+rapiddns-cli search tesla.com --max 1000
 
 # Extract Subdomains only
-./rapiddns-cli.exe search tesla.com --extract-subdomains
+rapiddns-cli search tesla.com --extract-subdomains
 
 # Extract IPs and Stats only
-./rapiddns-cli.exe search tesla.com --extract-ips
+rapiddns-cli search tesla.com --extract-ips
 
 # Extract BOTH
-./rapiddns-cli.exe search tesla.com --extract-subdomains --extract-ips
+rapiddns-cli search tesla.com --extract-subdomains --extract-ips
 ```
 
 ### 2. Pipeline & Console Output
@@ -113,7 +113,7 @@ Designed for hackers and automation. Standard output (stdout) is clean data, whi
 
 **Output only subdomains (text list):**
 ```bash
-./rapiddns-cli.exe search tesla.com --column subdomain -o text
+rapiddns-cli search tesla.com --column subdomain -o text
 ```
 *Output:*
 ```text
@@ -124,7 +124,7 @@ www.tesla.com
 
 **Output only IPs (JSON array):**
 ```bash
-./rapiddns-cli.exe search tesla.com --column ip -o json
+rapiddns-cli search tesla.com --column ip -o json
 ```
 *Output:*
 ```json
@@ -136,7 +136,7 @@ www.tesla.com
 
 **Silent mode (only extract to files):**
 ```bash
-./rapiddns-cli.exe search tesla.com --extract-subdomains --silent
+rapiddns-cli search tesla.com --extract-subdomains --silent
 ```
 
 ### 3. Advanced Query
@@ -144,7 +144,7 @@ www.tesla.com
 Perform complex queries using RapidDNS syntax.
 
 ```bash
-./rapiddns-cli.exe query "domain:apple.com AND type:A"
+rapiddns-cli query "domain:apple.com AND type:A"
 ```
 
 ### 4. Data Export (Recommended for Large Data)
@@ -152,7 +152,7 @@ Perform complex queries using RapidDNS syntax.
 The export command handles the entire workflow: requesting the export, waiting for completion, downloading the file, and processing it.
 
 ```bash
-./rapiddns-cli.exe export start tesla.com
+rapiddns-cli export start tesla.com
 ```
 
 **Options:**
@@ -165,7 +165,7 @@ The export command handles the entire workflow: requesting the export, waiting f
 **Full Workflow Example:**
 
 ```bash
-./rapiddns-cli.exe export start tesla.com --max 10000 --extract-subdomains --extract-ips
+rapiddns-cli export start tesla.com --max 10000 --extract-subdomains --extract-ips
 ```
 
 **Advanced Export Example:**
@@ -173,7 +173,7 @@ The export command handles the entire workflow: requesting the export, waiting f
 To use advanced query syntax for export, set `--type advanced`:
 
 ```bash
-./rapiddns-cli.exe export start "domain:apple AND type:A" --type advanced
+rapiddns-cli export start "domain:apple AND type:A" --type advanced
 ```
 
 This command will:
@@ -199,7 +199,7 @@ All results are saved by default in the `result/` directory.
 Run any command with `--help` to see more details.
 
 ```bash
-./rapiddns-cli.exe --help
-./rapiddns-cli.exe search --help
-./rapiddns-cli.exe export --help
+rapiddns-cli --help
+rapiddns-cli search --help
+rapiddns-cli export --help
 ```

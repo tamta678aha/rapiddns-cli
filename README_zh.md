@@ -33,7 +33,7 @@
 
     **Windows:**
     ```bash
-    go build -o rapiddns-cli.exe
+    go build -o rapiddns-cli
     ```
 
     **Linux:**
@@ -59,12 +59,12 @@
 2.  在 CLI 中进行配置：
 
 ```bash
-./rapiddns-cli.exe config set-key <YOUR_API_KEY>
+rapiddns-cli config set-key <YOUR_API_KEY>
 ```
 
 查看当前 Key：
 ```bash
-./rapiddns-cli.exe config get-key
+rapiddns-cli config get-key
 ```
 
 > **注意**：如果没有 API Key，搜索结果可能会受限，且导出功能将无法使用。
@@ -76,7 +76,7 @@
 搜索域名、IP 或 CIDR。
 
 ```bash
-./rapiddns-cli.exe search tesla.com
+rapiddns-cli search tesla.com
 ```
 
 **选项参数：**
@@ -92,19 +92,19 @@
 
 ```bash
 # 保存为 CSV
-./rapiddns-cli.exe search tesla.com -o csv -f results.csv
+rapiddns-cli search tesla.com -o csv -f results.csv
 
 # 自动获取 1000 条记录
-./rapiddns-cli.exe search tesla.com --max 1000
+rapiddns-cli search tesla.com --max 1000
 
 # 仅提取子域名
-./rapiddns-cli.exe search tesla.com --extract-subdomains
+rapiddns-cli search tesla.com --extract-subdomains
 
 # 仅提取 IP 和统计信息
-./rapiddns-cli.exe search tesla.com --extract-ips
+rapiddns-cli search tesla.com --extract-ips
 
 # 同时提取两者
-./rapiddns-cli.exe search tesla.com --extract-subdomains --extract-ips
+rapiddns-cli search tesla.com --extract-subdomains --extract-ips
 ```
 
 ### 2. 管道与控制台输出
@@ -113,7 +113,7 @@
 
 **仅输出子域名 (纯文本列表):**
 ```bash
-./rapiddns-cli.exe search tesla.com --column subdomain -o text
+rapiddns-cli search tesla.com --column subdomain -o text
 ```
 *输出:*
 ```text
@@ -124,7 +124,7 @@ www.tesla.com
 
 **仅输出 IP (JSON 数组):**
 ```bash
-./rapiddns-cli.exe search tesla.com --column ip -o json
+rapiddns-cli search tesla.com --column ip -o json
 ```
 *输出:*
 ```json
@@ -136,7 +136,7 @@ www.tesla.com
 
 **静默模式 (仅提取文件):**
 ```bash
-./rapiddns-cli.exe search tesla.com --extract-subdomains --silent
+rapiddns-cli search tesla.com --extract-subdomains --silent
 ```
 
 ### 3. 高级查询 (Advanced Query)
@@ -144,7 +144,7 @@ www.tesla.com
 使用 RapidDNS 语法执行复杂查询。
 
 ```bash
-./rapiddns-cli.exe query "domain:apple.com AND type:A"
+rapiddns-cli query "domain:apple.com AND type:A"
 ```
 
 ### 4. 数据导出 (Export) - 推荐用于大数据量
@@ -152,7 +152,7 @@ www.tesla.com
 Export 命令处理整个工作流：请求导出、等待完成、下载文件并进行处理。
 
 ```bash
-./rapiddns-cli.exe export start tesla.com
+rapiddns-cli export start tesla.com
 ```
 
 **选项参数：**
@@ -164,7 +164,7 @@ Export 命令处理整个工作流：请求导出、等待完成、下载文件�
 **完整工作流示例：**
 
 ```bash
-./rapiddns-cli.exe export start tesla.com --max 10000 --extract-subdomains --extract-ips
+rapiddns-cli export start tesla.com --max 10000 --extract-subdomains --extract-ips
 ```
 
 该命令将执行以下操作：
@@ -190,7 +190,7 @@ Export 命令处理整个工作流：请求导出、等待完成、下载文件�
 运行带有 `--help` 的任何命令以查看更多详细信息。
 
 ```bash
-./rapiddns-cli.exe --help
-./rapiddns-cli.exe search --help
-./rapiddns-cli.exe export --help
+rapiddns-cli --help
+rapiddns-cli search --help
+rapiddns-cli export --help
 ```
