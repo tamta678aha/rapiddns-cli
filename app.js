@@ -118,6 +118,10 @@ async function fetchAPI(endpoint, params = {}) {
         const response = await fetch(fetchUrl, { headers });
         if (!response.ok) {
             if (response.status === 401 || response.status === 403) {
+                // If user didn't provide a key, suggest adding one.
+                if (!apiKey) {
+                    throw new Error("API Key required for this request. Please add one in Settings.");
+                }
                 throw new Error("Invalid API Key or Plan limit reached.");
             }
             throw new Error(`API Error: ${response.statusText}`);
@@ -391,6 +395,10 @@ function sortIPs(a, b) {
 // --- Export Logic ---
 
 async function startExport() {
+    if (!apiKey) {
+        if (!confirm("Export tasks usually require an API Key. Do you want to try anyway?")) return;
+    }
+
     const input = document.getElementById('exportInput').value;
     const type = document.getElementById('exportType').value;
 
